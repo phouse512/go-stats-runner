@@ -31,7 +31,11 @@ func init() {
 	}
 
 	gauges_job := new(GaugesJob)
+	rescuetime_job := new(RescueTimeJob)
+	todoist_job := new(TodoistJob)
 	jobs = append(jobs, gauges_job)
+	jobs = append(jobs, rescuetime_job)
+	jobs = append(jobs, todoist_job)
 }
 
 func main() {
@@ -43,7 +47,6 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	log.Println("Received request: ", r.URL.Path[1:])
 
 	query_params := r.URL.Query()
-	log.Println(query_params)
 
 	var date_obj time.Time
 	var err error
@@ -55,6 +58,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 	} else {
+		log.Println("date param not attached, exiting")
 		return
 	}
 

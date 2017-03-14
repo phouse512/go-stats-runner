@@ -36,11 +36,11 @@ func (j *GaugesJob) generateKey(t time.Time, user string) string {
 	file_key := fmt.Sprintf("%s_%s_%d", month_string, day_string, year)
 	month_key := fmt.Sprintf("%s-%d", strings.ToLower(t.Month().String()[0:3]), year%100)
 
-	return fmt.Sprintf("gauges/v0/%s/%s/output_%s", user, month_key, file_key)
+	return fmt.Sprintf("gauges/v0/%s/%s/output_%s_%d.json", user, month_key, file_key, t.Unix())
 }
 
 func (j *GaugesJob) getData(id string, s Storage, t time.Time) {
-
+	log.Println("GaugesJob is beginning")
 	year, month, date := t.Date()
 
 	var day_string, month_string string

@@ -8,7 +8,6 @@ import (
 	"github.com/aws/aws-sdk-go/service/s3"
 	"github.com/aws/aws-sdk-go/service/s3/s3manager"
 	"log"
-	"time"
 )
 
 type Storage interface {
@@ -31,12 +30,6 @@ func NewS3Storage(uploader *s3manager.Uploader, session *session.Session) *S3Sto
 
 func (s *S3Storage) storeData(blob DataBlob) {
 	log.Printf("storing message with key: %s", blob.key)
-
-	does_exist := s.doesExist(blob.key)
-	if does_exist {
-		current_time := time.Now().Unix()
-		blob.key = fmt.Sprintf("%s_%d", blob.key, current_time)
-	}
 
 	result, err := s.uploader.Upload(&s3manager.UploadInput{
 		Body:   bytes.NewReader(blob.data),
