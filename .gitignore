@@ -3,5 +3,6 @@ gauges.yml
 moves.yml
 rescuetime.yml
 todoist.yml
+jawbone.yml
 sample_json/
 go-stats-runner

@@ -34,10 +34,12 @@ func init() {
 	rescuetime_job := new(RescueTimeJob)
 	todoist_job := new(TodoistJob)
 	moves_job := new(MovesJob)
+	jawbone_job := new(JawboneJob)
 	jobs = append(jobs, gauges_job)
 	jobs = append(jobs, rescuetime_job)
 	jobs = append(jobs, todoist_job)
 	jobs = append(jobs, moves_job)
+	jobs = append(jobs, jawbone_job)
 }
 
 func main() {
