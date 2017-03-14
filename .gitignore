@@ -1,3 +1,6 @@
 secrets.go
 gauges.yml
+moves.yml
+rescuetime.yml
+todoist.yml
 sample_json/
