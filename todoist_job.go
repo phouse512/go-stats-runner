@@ -16,11 +16,12 @@ type TodoistJob struct {
 
 func (j *TodoistJob) generateKey(t time.Time, user string) string {
 	month, date, year := getDateStringComponents(t)
+	current_ts := time.Now()
 
 	file_key := fmt.Sprintf("%s_%s_%s", month, date, year)
 	month_key := fmt.Sprintf("%s-%d", strings.ToLower(t.Month().String()[0:3]), t.Year()%100)
 
-	return fmt.Sprintf("todoist/v0/%s/%s/output_%s_%d.json", user, month_key, file_key, t.Unix())
+	return fmt.Sprintf("todoist/v0/%s/%s/output_%s_%d.json", user, month_key, file_key, current_ts.Unix())
 }
 
 func (j *TodoistJob) getData(id string, s Storage, t time.Time) {
